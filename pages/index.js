@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Feed from "../components/Feed";
 import Header from "../components/Header";
@@ -7,12 +7,10 @@ import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import { db } from "../firebase";
 
-export default function Home({ session, posts }) {
+export default function Home({ posts }) {
+  const { data: session } = useSession();
   console.log(session);
-  if (session) return <Login />;
-  {
-    /*This is no correct you much change session to !session for login to be effective */
-  }
+  if (!session) return <Login />;
   return (
     <div className="h-screen, bg-gray-100 overflow-hidden">
       <Head>
@@ -34,9 +32,8 @@ export default function Home({ session, posts }) {
 
 // The code here has problem with login
 
-export async function getServerSideProps(context) {
-  ///Get the user
-  const session = await getSession(context);
+export async function getServerSideProps() {
+  ///Get the posts
   const posts = await db.collection("posts").orderBy("timestamp", "desc").get();
   const docs = posts.docs.map((post) => ({
     id: post.id,
@@ -45,7 +42,6 @@ export async function getServerSideProps(context) {
   }));
   return {
     props: {
-      session,
       posts: docs,
     },
   };

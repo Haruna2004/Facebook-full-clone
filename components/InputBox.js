@@ -4,8 +4,10 @@ import { EmojiHappyIcon } from "@heroicons/react/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import { db, storage } from "../firebase";
 import firebase from "firebase/compat/app";
+import { useSession } from "next-auth/react";
 
 const InputBox = () => {
+  const { data: session } = useSession();
   const inputRef = useRef(null);
   const filePickerRef = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
@@ -15,11 +17,9 @@ const InputBox = () => {
     db.collection("posts")
       .add({
         message: inputRef.current.value,
-        // name: session.user.name
-        name: "Haruna Faruk",
-        email: "harunafaruk@gmail.com",
-        image:
-          "https://media.licdn.com/dms/image/D4D03AQEuiGeEmjJ-Sg/profile-displayphoto-shrink_800_800/0/1672912946884?e=1679529600&v=beta&t=g32mdKsENuUHf5oeA7KqSiv6pUPANyr3gDtmrKwBQvs",
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then((doc) => {
@@ -72,8 +72,7 @@ const InputBox = () => {
       <div className="flex space-x-4 p-4 items-center">
         <Image
           className="rounded-full cursor-pointer"
-          // src={session.user.image}
-          src="https://media.licdn.com/dms/image/D4D03AQEuiGeEmjJ-Sg/profile-displayphoto-shrink_800_800/0/1672912946884?e=1679529600&v=beta&t=g32mdKsENuUHf5oeA7KqSiv6pUPANyr3gDtmrKwBQvs"
+          src={session.user.image}
           width="40"
           height="40"
           fixed="true"

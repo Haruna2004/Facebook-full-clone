@@ -17,7 +17,7 @@ const Login = () => {
         onClick={signIn}
         className="p-5 bg-blue-500 rounded-full text-white text-center cursor-pointer font-medium"
       >
-        Login with Facebook
+        Login in To Facebook
       </h1>
     </div>
   );

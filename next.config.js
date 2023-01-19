@@ -13,6 +13,7 @@ module.exports = {
       "firebasestorage.googleapis.com",
       "www.edigitalagency.com.au",
       "media.licdn.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

@@ -27,13 +27,13 @@ const Post = ({ name, message, email, postImage, image, timestamp }) => {
         <p className="p-4">{message}</p>
       </div>
       {postImage && (
-        <div className="max-[460px]:ml-5 relative h-56 md:h-96 bg-white">
+        <div className="max-[460px]:ml-5 relative h-56 md:h-96 bg-white overflow-scroll scrollbar-hide">
           <Image
             src={postImage}
             style={{ objectFit: "cover" }}
             fill="true"
             alt="."
-            priority={true}
+            priority="true"
           />
         </div>
       )}

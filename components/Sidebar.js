@@ -15,14 +15,10 @@ import {
 import SidebarRow from "./SidebarRow";
 
 const Sidebar = () => {
-  //   const [session, loading] = useSession();
+  const { data: session } = useSession();
   return (
     <div className="max-[460px]:hidden p-2 mt-5 max-w-[600px] xl:min-w-[300px] ">
-      {/* <SidebarRow src={session.user.image} title={session.user.name} /> */}
-      <SidebarRow
-        src="https://media.licdn.com/dms/image/D4D03AQEuiGeEmjJ-Sg/profile-displayphoto-shrink_800_800/0/1672912946884?e=1679529600&v=beta&t=g32mdKsENuUHf5oeA7KqSiv6pUPANyr3gDtmrKwBQvs"
-        title="Haruna Faruk"
-      />
+      <SidebarRow src={session.user.image} title={session.user.name} />
       <SidebarRow Icon={UsersIcon} title="Friends" />
       <SidebarRow Icon={UserGroupIcon} title="Groups" />
       <SidebarRow Icon={ShoppingBagIcon} title="Marketplace" />

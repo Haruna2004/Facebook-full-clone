@@ -19,7 +19,7 @@ import HeaderIcon from "./HeaderIcon";
 import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
-  // const [session] = useSession();
+  const { data: session } = useSession();
   return (
     <div className="sticky top-50 bg-white flex items-center p-2 lg:px-5 shadow-md">
       {/* left */}
@@ -56,15 +56,14 @@ const Header = () => {
         <Image
           onClick={signOut}
           className="rounded-full cursor-pointer"
-          // src={session.user.image}
-          src="https://media.licdn.com/dms/image/D4D03AQEuiGeEmjJ-Sg/profile-displayphoto-shrink_800_800/0/1672912946884?e=1679529600&v=beta&t=g32mdKsENuUHf5oeA7KqSiv6pUPANyr3gDtmrKwBQvs"
+          src={session.user.image}
           width="40"
           height="40"
           fixed="true"
           alt="."
         />
         <p className="hidden lg:inline-flex text-sm font-semibold whitespace-nowrap pr-3">
-          {/*session.user.name */}Haruna Faruk
+          {session.user.name}
         </p>
         <ViewGridIcon className="icon" />
         <ChatIcon className="icon" />
