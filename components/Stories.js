@@ -6,8 +6,7 @@ const Stories = () => {
     {
       name: "Haruna Faruk",
       src: "https://media.licdn.com/dms/image/D4D03AQEuiGeEmjJ-Sg/profile-displayphoto-shrink_800_800/0/1672912946884?e=1679529600&v=beta&t=g32mdKsENuUHf5oeA7KqSiv6pUPANyr3gDtmrKwBQvs",
-      profile:
-        "https://firebasestorage.googleapis.com/v0/b/facebook-v23.appspot.com/o/posts%2F7Mo6j8xShoav5mk2kWja?alt=media&token=fa089e1a-382e-43e6-a529-758d60f69229",
+      profile: `https://firebasestorage.googleapis.com/v0/b/facebook-v23.appspot.com/o/posts%2F7Mo6j8xShoav5mk2kWja?alt=media&token=${process.env.FIREBASE_IMAGE_TOKEN}`,
     },
     {
       name: "Elon Musk",
